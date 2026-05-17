@@ -11,7 +11,7 @@ Error generating stack: `+e.message+`
 `}return r})(this))}rehydrate(){!this.server&&et&&tn(this)}reconstructWithOptions(t,n=!0){let r=new e(Object.assign(Object.assign({},this.options),t),this.gs,n&&this.names||void 0);return r.keyframeIds=new Set(this.keyframeIds),!this.server&&et&&t.target!==this.options.target&&Qt(this.options.target)!==Qt(t.target)&&tn(r),r}allocateGSInstance(e){return this.gs[e]=(this.gs[e]||0)+1}getTag(){return this.tag||=(e=(({useCSSOMInjection:e,target:t,nonce:n})=>e?new on(t,n):new sn(t,n))(this.options),new Jt(e));var e}hasNameForId(e,t){var n;return(n=this.names.get(e)?.has(t))!=null&&n}registerName(e,t){lt(e),e.startsWith(rt)&&this.keyframeIds.add(e);let n=this.names.get(e);n?n.add(t):this.names.set(e,new Set([t]))}insertRules(e,t,n){this.registerName(e,t),this.getTag().insertRules(lt(e),n)}clearNames(e){this.names.has(e)&&this.names.get(e).clear()}clearRules(e){this.getTag().clearGroup(lt(e)),this.clearNames(e)}clearTag(){this.tag=void 0}},dn=new WeakSet,fn={animationIterationCount:1,aspectRatio:1,borderImageOutset:1,borderImageSlice:1,borderImageWidth:1,columnCount:1,columns:1,flex:1,flexGrow:1,flexShrink:1,gridRow:1,gridRowEnd:1,gridRowSpan:1,gridRowStart:1,gridColumn:1,gridColumnEnd:1,gridColumnSpan:1,gridColumnStart:1,fontWeight:1,lineHeight:1,opacity:1,order:1,orphans:1,scale:1,tabSize:1,widows:1,zIndex:1,zoom:1,WebkitLineClamp:1,fillOpacity:1,floodOpacity:1,stopOpacity:1,strokeDasharray:1,strokeDashoffset:1,strokeMiterlimit:1,strokeOpacity:1,strokeWidth:1};function pn(e,t){return t==null||typeof t==`boolean`||t===``?``:typeof t!=`number`||t===0||e in fn||e.startsWith(`--`)?String(t).trim():t+`px`}var mn=47;function hn(e){if(e.charCodeAt(0)===45&&e.charCodeAt(1)===45)return e;let t=``;for(let n=0;n<e.length;n++){let r=e.charCodeAt(n);t+=r>=65&&r<=90?`-`+String.fromCharCode(r+32):e[n]}return t.startsWith(`ms-`)?`-`+t:t}var gn=Symbol.for(`sc-keyframes`);function _n(e){return typeof e==`object`&&!!e&&gn in e}function vn(e){return Vt(e)&&!(e.prototype&&e.prototype.isReactComponent)}var yn=e=>e==null||!1===e||e===``,bn=Symbol.for(`react.client.reference`);function xn(e){return e.$$typeof===bn}function Sn(e,t){for(let n in e){let r=e[n];e.hasOwnProperty(n)&&!yn(r)&&(Array.isArray(r)&&dn.has(r)||Vt(r)?t.push(hn(n)+`:`,r,`;`):Gt(r)?(t.push(n+` {`),Sn(r,t),t.push(`}`)):t.push(hn(n)+`: `+pn(n,r)+`;`))}}function Cn(e,t,n,r,i=[]){if(yn(e))return i;let a=typeof e;if(a===`string`)return i.push(e),i;if(a===`function`)return xn(e)?i:vn(e)&&t?Cn(e(t),t,n,r,i):(i.push(e),i);if(Array.isArray(e)){for(let a=0;a<e.length;a++)Cn(e[a],t,n,r,i);return i}return Ht(e)?(i.push(`.${e.styledComponentId}`),i):_n(e)?(n?(e.inject(n,r),i.push(e.getName(r))):i.push(e),i):xn(e)?i:Gt(e)?(Sn(e,i),i):(i.push(e.toString()),i)}var wn=Ct(Qe),Tn=class{constructor(e,t,n){this.rules=e,this.componentId=t,this.baseHash=St(wn,t),this.baseStyle=n,un.registerId(t)}generateAndInjectStyles(e,t,n){let r=this.baseStyle?this.baseStyle.generateAndInjectStyles(e,t,n):``;{let i=``;for(let r=0;r<this.rules.length;r++){let a=this.rules[r];if(typeof a==`string`)i+=a;else if(a)if(vn(a)){let r=a(e);typeof r==`string`?i+=r:r!=null&&!1!==r&&(i+=Wt(Cn(r,e,t,n)))}else i+=Wt(Cn(a,e,t,n))}if(i){this.dynamicNameCache||=new Map;let e=n.hash?n.hash+i:i,a=this.dynamicNameCache.get(e);if(!a){if(a=bt(St(St(this.baseHash,n.hash),i)>>>0),this.dynamicNameCache.size>=200){let e=this.dynamicNameCache.keys().next().value;e!==void 0&&this.dynamicNameCache.delete(e)}this.dynamicNameCache.set(e,a)}if(!t.hasNameForId(this.componentId,a)){let e=n(i,`.`+a,void 0,this.componentId);t.insertRules(this.componentId,a,e)}r=Ut(r,a)}}return r}},En=/&/g;function Dn(e,t){let n=0;for(;--t>=0&&e.charCodeAt(t)===92;)n++;return!(1&~n)}function On(e){let t=e.length,n=``,r=0,i=0,a=0,o=!1,s=!1;for(let c=0;c<t;c++){let l=e.charCodeAt(c);if(a!==0||o||l!==mn||e.charCodeAt(c+1)!==42)if(o)l===42&&e.charCodeAt(c+1)===mn&&(o=!1,c++);else if(l!==34&&l!==39||Dn(e,c)){if(a===0)if(l===123)i++;else if(l===125){if(i--,i<0){s=!0;let n=c+1;for(;n<t;){let t=e.charCodeAt(n);if(t===59||t===10)break;n++}n<t&&e.charCodeAt(n)===59&&n++,i=0,c=n-1,r=n;continue}i===0&&(n+=e.substring(r,c+1),r=c+1)}else l===59&&i===0&&(n+=e.substring(r,c+1),r=c+1)}else a===0?a=l:a===l&&(a=0);else o=!0,c++}return s||i!==0||a!==0?(r<t&&i===0&&a===0&&(n+=e.substring(r)),n):e}function kn(e,t){let n=t+` `,r=`,`+n;for(let i=0;i<e.length;i++){let a=e[i];if(a.type===`rule`){a.value=(n+a.value).replaceAll(`,`,r);let e=a.props,t=[];for(let r=0;r<e.length;r++)t[r]=n+e[r];a.props=t}Array.isArray(a.children)&&a.type!==`@keyframes`&&kn(a.children,t)}return e}function An({options:e=pt,plugins:t=ft}=pt){let n,r,i,a=(e,t,i)=>i.startsWith(r)&&i.endsWith(r)&&i.replaceAll(r,``).length>0?`.${n}`:e,o=t.slice();o.push(e=>{e.type===`rule`&&e.value.includes(`&`)&&(i||=RegExp(`\\${r}\\b`,`g`),e.props[0]=e.props[0].replace(En,r).replace(i,a))}),e.prefix&&o.push(Je),o.push(Ge);let s=[],c=Ke(o.concat(qe(e=>s.push(e)))),l=(t,a=``,o=``,l=`&`)=>{n=l,r=a,i=void 0;let u=function(e){let t=e.indexOf(`//`)!==-1,n=e.indexOf(`}`)!==-1;if(!t&&!n)return e;if(!t)return On(e);let r=e.length,i=``,a=0,o=0,s=0,c=0,l=0,u=!1;for(;o<r;){let t=e.charCodeAt(o);if(t!==34&&t!==39||Dn(e,o))if(s===0)if(t===mn&&o+1<r&&e.charCodeAt(o+1)===42){for(o+=2;o+1<r&&(e.charCodeAt(o)!==42||e.charCodeAt(o+1)!==mn);)o++;o+=2}else if(t!==40)if(t!==41)if(c>0)o++;else if(t===42&&o+1<r&&e.charCodeAt(o+1)===mn)i+=e.substring(a,o),o+=2,a=o,u=!0;else if(t===mn&&o+1<r&&e.charCodeAt(o+1)===mn){for(i+=e.substring(a,o);o<r&&e.charCodeAt(o)!==10;)o++;a=o,u=!0}else t===123?l++:t===125&&l--,o++;else c>0&&c--,o++;else c++,o++;else o++;else s===0?s=t:s===t&&(s=0),o++}return u?(a<r&&(i+=e.substring(a)),l===0?i:On(i)):l===0?e:On(e)}(t),d=Re(o||a?o+` `+a+` { `+u+` }`:u);return e.namespace&&(d=kn(d,e.namespace)),s=[],We(d,c),s},u=e,d=xt;for(let e=0;e<t.length;e++)t[e].name||at(15),d=St(d,t[e].name);return u!=null&&u.namespace&&(d=St(d,u.namespace)),u!=null&&u.prefix&&(d=St(d,`p`)),l.hash=d===xt?``:d.toString(),l}var jn=new un,Mn=An(),Nn=_.createContext({shouldForwardProp:void 0,styleSheet:jn,stylis:Mn,stylisPlugins:void 0});Nn.Consumer;function Pn(){return _.useContext(Nn)}var Fn=_.createContext(void 0);Fn.Consumer;var In=Object.prototype.hasOwnProperty,Ln={};function Rn(e,t){let n=typeof e==`string`?_t(e):`sc`;Ln[n]=(Ln[n]||0)+1;let r=n+`-`+wt(Qe+n+Ln[n]);return t?t+`-`+r:r}function zn(e,t,n){let r=Ht(e),i=e,a=!Et(e),{attrs:o=ft,componentId:s=Rn(t.displayName,t.parentComponentId),displayName:c=Dt(e)}=t,l=t.displayName&&t.componentId?_t(t.displayName)+`-`+t.componentId:t.componentId||s,u=r&&i.attrs?i.attrs.concat(o).filter(Boolean):o,{shouldForwardProp:d}=t;if(r&&i.shouldForwardProp){let e=i.shouldForwardProp;if(t.shouldForwardProp){let n=t.shouldForwardProp;d=(t,r)=>e(t,r)&&n(t,r)}else d=e}let f=new Tn(n,l,r?i.componentStyle:void 0);function p(e,t){return function(e,t,n){let{attrs:r,componentStyle:i,defaultProps:a,foldedComponentIds:o,styledComponentId:s,target:c}=e,l=_.useContext(Fn),u=Pn(),d=e.shouldForwardProp||u.shouldForwardProp,f=mt(t,l,a)||pt,p,m;{let e=_.useRef(null),n=e.current;if(n!==null&&n[1]===f&&n[2]===u.styleSheet&&n[3]===u.stylis&&n[7]===i&&function(e,t,n){let r=e,i=t,a=0;for(let e in i)if(In.call(i,e)&&(a++,r[e]!==i[e]))return!1;return a===n}(n[0],t,n[4]))p=n[5],m=n[6];else{p=function(e,t,n){let r=Object.assign(Object.assign({},t),{className:void 0,theme:n}),i=e.length>1;for(let n=0;n<e.length;n++){let a=e[n],o=Vt(a)?a(i?Object.assign({},r):r):a;for(let e in o)e===`className`?r.className=Ut(r.className,o[e]):e===`style`?r.style=Object.assign(Object.assign({},r.style),o[e]):e in t&&t[e]===void 0||(r[e]=o[e])}return`className`in t&&typeof t.className==`string`&&(r.className=Ut(r.className,t.className)),r}(r,t,f),m=function(e,t,n,r){return e.generateAndInjectStyles(t,n,r)}(i,p,u.styleSheet,u.stylis);let n=0;for(let e in t)In.call(t,e)&&n++;e.current=[t,f,u.styleSheet,u.stylis,n,p,m,i]}}let h=p.as||c,g=function(e,t,n,r){let i={};for(let a in e)e[a]===void 0||a[0]===`$`||a===`as`||a===`theme`&&e.theme===n||(a===`forwardedAs`?i.as=e.forwardedAs:r&&!r(a,t)||(i[a]=e[a]));return i}(p,h,f,d),v=Ut(o,s);return m&&(v+=` `+m),p.className&&(v+=` `+p.className),g[Et(h)&&h.includes(`-`)?`class`:`className`]=v,n&&(g.ref=n),(0,_.createElement)(h,g)}(m,e,t)}p.displayName=c;let m=_.forwardRef(p);return m.attrs=u,m.componentStyle=f,m.displayName=c,m.shouldForwardProp=d,m.foldedComponentIds=r?Ut(i.foldedComponentIds,i.styledComponentId):``,m.styledComponentId=l,m.target=r?i.target:e,Object.defineProperty(m,`defaultProps`,{get(){return this._foldedDefaultProps},set(e){this._foldedDefaultProps=r?function(e,...t){for(let n of t)Kt(e,n,!0);return e}({},i.defaultProps,e):e}}),qt(m,()=>`.${m.styledComponentId}`),a&&Bt(m,e,{attrs:!0,componentStyle:!0,displayName:!0,foldedComponentIds:!0,shouldForwardProp:!0,styledComponentId:!0,target:!0}),m}var Bn=new Set(`a.abbr.address.area.article.aside.audio.b.bdi.bdo.blockquote.body.button.br.canvas.caption.cite.code.col.colgroup.data.datalist.dd.del.details.dfn.dialog.div.dl.dt.em.embed.fieldset.figcaption.figure.footer.form.h1.h2.h3.h4.h5.h6.header.hgroup.hr.html.i.iframe.img.input.ins.kbd.label.legend.li.main.map.mark.menu.meter.nav.object.ol.optgroup.option.output.p.picture.pre.progress.q.rp.rt.ruby.s.samp.search.section.select.slot.small.span.strong.sub.summary.sup.table.tbody.td.template.textarea.tfoot.th.thead.time.tr.u.ul.var.video.wbr.circle.clipPath.defs.ellipse.feBlend.feColorMatrix.feComponentTransfer.feComposite.feConvolveMatrix.feDiffuseLighting.feDisplacementMap.feDistantLight.feDropShadow.feFlood.feFuncA.feFuncB.feFuncG.feFuncR.feGaussianBlur.feImage.feMerge.feMergeNode.feMorphology.feOffset.fePointLight.feSpecularLighting.feSpotLight.feTile.feTurbulence.filter.foreignObject.g.image.line.linearGradient.marker.mask.path.pattern.polygon.polyline.radialGradient.rect.stop.svg.switch.symbol.text.textPath.tspan.use`.split(`.`));function Vn(e,t){let n=[e[0]];for(let r=0,i=t.length;r<i;r+=1)n.push(t[r],e[r+1]);return n}var Hn=e=>(dn.add(e),e);function Un(e,...t){if(Vt(e)||Gt(e))return Hn(Cn(Vn(ft,[e,...t])));let n=e;return t.length===0&&n.length===1&&typeof n[0]==`string`?Cn(n):Hn(Cn(Vn(n,t)))}function Wn(e,t,n=pt){if(!t)throw at(1,t);let r=(r,...i)=>e(t,n,Un(r,...i));return r.attrs=r=>Wn(e,t,Object.assign(Object.assign({},n),{attrs:Array.prototype.concat(n.attrs,r).filter(Boolean)})),r.withConfig=r=>Wn(e,t,Object.assign(Object.assign({},n),r)),r}var Gn=e=>Wn(zn,e),j=Gn;Bn.forEach(e=>{j[e]=Gn(e)});var Kn=class{constructor(e,t){this.instanceRules=new Map,this.rules=e,this.componentId=t,this.isStatic=function(e){for(let t=0;t<e.length;t+=1){let n=e[t];if(Vt(n)&&!Ht(n))return!1}return!0}(e),un.registerId(this.componentId)}removeStyles(e,t){this.instanceRules.delete(e),this.rebuildGroup(t)}renderStyles(e,t,n,r){let i=this.componentId;if(this.isStatic){if(n.hasNameForId(i,i+e))this.instanceRules.has(e)||this.computeRules(e,t,n,r);else{let a=this.computeRules(e,t,n,r);n.insertRules(i,a.name,a.rules)}return}let a=this.instanceRules.get(e);if(this.computeRules(e,t,n,r),!n.server&&a){let t=a.rules,n=this.instanceRules.get(e).rules;if(t.length===n.length){let e=!0;for(let r=0;r<t.length;r++)if(t[r]!==n[r]){e=!1;break}if(e)return}}this.rebuildGroup(n)}computeRules(e,t,n,r){let i=Wt(Cn(this.rules,t,n,r)),a={name:this.componentId+e,rules:r(i,``)};return this.instanceRules.set(e,a),a}rebuildGroup(e){let t=this.componentId;e.clearRules(t);for(let n of this.instanceRules.values())e.insertRules(t,n.name,n.rules)}};function qn(e,...t){let n=Un(e,...t),r=`sc-global-${wt(JSON.stringify(n))}`,i=new Kn(n,r),a=e=>{let t=Pn(),n=_.useContext(Fn),a;{let e=_.useRef(null);e.current===null&&(e.current=t.styleSheet.allocateGSInstance(r)),a=e.current}t.styleSheet.server&&o(a,e,t.styleSheet,n,t.stylis);{let s=i.isStatic?[a,t.styleSheet,i]:[a,e,t.styleSheet,n,t.stylis,i],c=_.useRef(i);_.useLayoutEffect(()=>{t.styleSheet.server||(c.current!==i&&(t.styleSheet.clearRules(r),c.current=i),o(a,e,t.styleSheet,n,t.stylis))},s),_.useLayoutEffect(()=>()=>{t.styleSheet.server||i.removeStyles(a,t.styleSheet)},[a,t.styleSheet,i])}return t.styleSheet.server&&i.instanceRules.delete(a),null};function o(e,t,n,r,o){if(i.isStatic)i.renderStyles(e,it,n,o);else{let s=Object.assign(Object.assign({},t),{theme:mt(t,r,a.defaultProps)});i.renderStyles(e,s,n,o)}}return _.memo(a)}var Jn,Yn=class{constructor(e,t){this[Jn]=!0,this.inject=(e,t=Mn)=>{let n=this.getName(t);if(!e.hasNameForId(this.id,n)){let r=t(this.rules,n,`@keyframes`);e.insertRules(this.id,n,r)}},this.name=e,this.id=rt+e,this.rules=t,lt(this.id),qt(this,()=>{throw at(12,String(this.name))})}getName(e=Mn){return e.hash?this.name+bt(e.hash>>>0):this.name}};function Xn(e,...t){let n=Wt(Un(e,...t));return new Yn(wt(n),n)}Jn=gn,`${Ye}`,`${Ye}`,`${Ye}`;var Zn=o((e=>{var t=Symbol.for(`react.transitional.element`),n=Symbol.for(`react.fragment`);function r(e,n,r){var i=null;if(r!==void 0&&(i=``+r),n.key!==void 0&&(i=``+n.key),`key`in n)for(var a in r={},n)a!==`key`&&(r[a]=n[a]);else r=n;return n=r.ref,{$$typeof:t,type:e,key:i,ref:n===void 0?null:n,props:r}}e.Fragment=n,e.jsx=r,e.jsxs=r})),M=o(((e,t)=>{t.exports=Zn()}))(),Qn=Xn`
   0% {
     opacity: 0;
-    transform: translateY(40px) scale(0.95);
+    transform: translateY(60px) scale(0.97);
   }
   100% {
     opacity: 1;
@@ -19,7 +19,7 @@ Error generating stack: `+e.message+`
   }
 `,$n=Xn`
   0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+  70% { transform: translateY(-8px); }
   100% { transform: translateY(0px); }
 `,er=Xn`
   0%, 100% { transform: translateX(0); }
@@ -38,16 +38,15 @@ Error generating stack: `+e.message+`
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   margin-bottom: 35px;
 
-  /* Sätter samman intro-animationen och den eviga svävande effekten */
+
   animation:
     ${Qn} 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.2) forwards,
-    ${$n} 4s ease-in-out infinite 0.6s; /* Startar efter introt */
-
+    ${$n} 4s ease-in-out infinite 0.6s;
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
 
-  /* Om användaren triggar ett fel lägger vi till skak-animationen dynamiskt */
+
   ${e=>e.$hasError&&Un`
-    animation: ${er} 0.4s ease-in-out;
+    animation: ${er} 0.19s ease-in-out;
     border: 2px solid #f43f5e;
   `}
 
@@ -75,7 +74,7 @@ Error generating stack: `+e.message+`
     outline: none;
     border-color: #a855f7;
     background-color: #ffffff;
-    transform: scale(1.01); /* Fältet växer lite lätt när man skriver */
+    transform: scale(1.01);
     animation: ${tr} 1.5s infinite;
   }
 `,ar=j.textarea`
@@ -111,11 +110,11 @@ Error generating stack: `+e.message+`
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.25);
 
   &:hover {
-    transform: translateY(-4px) scale(1.03); /* Lyfter och expanderar */
+    transform: translateY(-4px) scale(1.03);
   }
 
   &:active {
-    transform: translateY(-1px) scale(0.98); /* Krymper snabbt när man klickar */
+    transform: translateY(-1px) scale(0.98);
   }
 `,cr=j(sr)`
   flex: 2;
@@ -162,11 +161,11 @@ Error generating stack: `+e.message+`
   margin-bottom: 5px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 `,hr=j.div`
-  background: rgba(255, 255, 255, 0.9); /* Gjorde kortet aningen vitare för grym kontrast */
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 18px;
-  border-left: 6px solid #a855f7; /* Ändrade till lila för att matcha din MyNote-logga! */
+  border-left: 6px solid #a855f7;
   border-radius: 14px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -174,17 +173,17 @@ Error generating stack: `+e.message+`
   justify-content: space-between;
   align-items: center;
 
-  /* Kopplar på introststudsen OCH det eviga flytet i en och samma rad */
+
   animation:
     ${dr} 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
-    ${fr} 5s ease-in-out infinite 0.5s; /* Startar efter introt */
+    ${fr} 5s ease-in-out infinite 0.5s;
 
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   &:hover {
-    transform: translateY(-8px) scale(1.02); /* Lyfter högre och blir lite större */
-    box-shadow: 0 20px 35px rgba(168, 85, 247, 0.25); /* Glöder i lila vid hover! */
-    border-left-color: #f43f5e; /* Kanten skiftar färg till rosa vid hover */
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 35px rgba(168, 85, 247, 0.25);
+    border-left-color: #f43f5e;
   }
 `,gr=j.div`
   flex: 1;
@@ -213,11 +212,11 @@ Error generating stack: `+e.message+`
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.25);
 
   &:hover {
-    transform: translateY(-3px) scale(1.05); /* Knapparna poppar ut mer */
+    transform: translateY(-3px) scale(1.05);
   }
 
   &:active {
-    transform: translateY(0) scale(0.95); /* Knappen trycks in fysiskt */
+    transform: translateY(0) scale(0.95);
   }
 `,xr=j(br)`
   background: #fef3c7;
@@ -245,7 +244,7 @@ Error generating stack: `+e.message+`
     padding: 0;
     width: 100%;
     min-height: 100vh;
-    background-color: #060814; /* Supermörk, lyxig midnattsblå bas */
+    background-color: #060814;
     overflow-x: hidden;
   }
 `,Er=Xn`
@@ -278,26 +277,26 @@ Error generating stack: `+e.message+`
   position: absolute;
   border-radius: 50%;
   mix-blend-mode: screen;
-  filter: blur(120px); /* Extremt hög blur för en helt mjuk övergång */
-  opacity: 0.4; /* Snyggt dämpad så det inte blir för ljust */
+  filter: blur(120px);
+  opacity: 0.4;
 `,jr=j(Ar)`
   width: 600px;
   height: 600px;
-  background: #6b21a8; /* Djuplila */
+  background: #6b21a8;
   top: -100px;
   left: -50px;
   animation: ${Er} 25s ease-in-out infinite;
 `,Mr=j(Ar)`
   width: 700px;
   height: 700px;
-  background: #1d4ed8; /* Kungsblå */
+  background: #1d4ed8;
   bottom: -150px;
   right: -100px;
   animation: ${Dr} 30s ease-in-out infinite;
 `,Nr=j(Ar)`
   width: 500px;
   height: 500px;
-  background: #be185d; /* Mörkt rosa/hallon */
+  background: #be185d;
   top: 30%;
   left: 40%;
   animation: ${Er} 20s ease-in-out infinite;
@@ -306,7 +305,7 @@ Error generating stack: `+e.message+`
   max-width: 580px;
   margin: 0 auto;
   position: relative;
-  z-index: 1; /* Lägger appen framför bakgrunden */
+  z-index: 1;
 `,Fr=j.header`
   text-align: center;
   margin-bottom: 50px;
@@ -322,14 +321,14 @@ Error generating stack: `+e.message+`
   }
 
   span {
-    background: linear-gradient(135deg, #a855f7 0%, #f43f5e 100%);
+    background: linear-gradient(135deg, #e2c6fc 0%, #f43f5e 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   p {
-    color: #a3a9b1;
-    font-size: 20px;
+    color: #d7d8db;
+    font-size: 22px;
     font-weight: 500;
     letter-spacing: 1px;
     text-transform: uppercase;
