@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 
-// --- ANIMATIONS ---
-// 1. Intro-snärt: Glider upp och poppar fram
+
 const popFormIn = keyframes`
   0% {
     opacity: 0;
-    transform: translateY(40px) scale(0.95);
+    transform: translateY(60px) scale(0.97);
   }
   100% {
     opacity: 1;
@@ -14,21 +13,19 @@ const popFormIn = keyframes`
   }
 `;
 
-// 2. Konstant svävande effekt: Hela kortet rör sig mjukt upp och ner
+
 const float = keyframes`
   0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+  70% { transform: translateY(-8px); }
   100% { transform: translateY(0px); }
 `;
 
-// 3. Skak-animation om fälten är tomma vid klick
 const shake = keyframes`
   0%, 100% { transform: translateX(0); }
   20%, 60% { transform: translateX(-6px); }
   40%, 80% { transform: translateX(6px); }
 `;
 
-// 4. Pulserande glöd för aktiva textfält
 const inputGlow = keyframes`
   0% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4); }
   100% { box-shadow: 0 0 0 10px rgba(168, 85, 247, 0); }
@@ -45,16 +42,15 @@ const FormContainer = styled.form`
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   margin-bottom: 35px;
 
-  /* Sätter samman intro-animationen och den eviga svävande effekten */
+
   animation:
     ${popFormIn} 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.2) forwards,
-    ${float} 4s ease-in-out infinite 0.6s; /* Startar efter introt */
-
+    ${float} 4s ease-in-out infinite 0.6s;
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
 
-  /* Om användaren triggar ett fel lägger vi till skak-animationen dynamiskt */
+
   ${props => props.$hasError && css`
-    animation: ${shake} 0.4s ease-in-out;
+    animation: ${shake} 0.19s ease-in-out;
     border: 2px solid #f43f5e;
   `}
 
@@ -86,7 +82,7 @@ const Input = styled.input`
     outline: none;
     border-color: #a855f7;
     background-color: #ffffff;
-    transform: scale(1.01); /* Fältet växer lite lätt när man skriver */
+    transform: scale(1.01);
     animation: ${inputGlow} 1.5s infinite;
   }
 `;
@@ -128,11 +124,11 @@ const BaseButton = styled.button`
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.25);
 
   &:hover {
-    transform: translateY(-4px) scale(1.03); /* Lyfter och expanderar */
+    transform: translateY(-4px) scale(1.03);
   }
 
   &:active {
-    transform: translateY(-1px) scale(0.98); /* Krymper snabbt när man klickar */
+    transform: translateY(-1px) scale(0.98);
   }
 `;
 
@@ -170,10 +166,9 @@ function NoteForm({ onAddNote, editingNote, onUpdateNote, onCancelEdit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Om något fält är tomt, trigga skak-animationen!
     if (!title.trim() || !description.trim()) {
       setError(true);
-      setTimeout(() => setError(false), 400); // Återställ efter animationen kört klart
+      setTimeout(() => setError(false), 400);
       return;
     }
 

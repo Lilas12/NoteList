@@ -1,7 +1,5 @@
 import styled, { keyframes } from 'styled-components';
 
-// --- ANIMATIONS ---
-// 1. Elastisk intro-animation (Kortet flyger upp och studsar till)
 const popIn = keyframes`
   0% {
     opacity: 0;
@@ -16,7 +14,7 @@ const popIn = keyframes`
   }
 `;
 
-// 2. En supermjuk, evig flyteffekt som matchar din rörliga mesh-bakgrund
+
 const floatCard = keyframes`
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-5px); }
@@ -38,11 +36,11 @@ const ListTitle = styled.h3`
 `;
 
 const NoteCard = styled.div`
-  background: rgba(255, 255, 255, 0.9); /* Gjorde kortet aningen vitare för grym kontrast */
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 18px;
-  border-left: 6px solid #a855f7; /* Ändrade till lila för att matcha din MyNote-logga! */
+  border-left: 6px solid #a855f7;
   border-radius: 14px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -50,17 +48,17 @@ const NoteCard = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  /* Kopplar på introststudsen OCH det eviga flytet i en och samma rad */
+
   animation:
     ${popIn} 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
-    ${floatCard} 5s ease-in-out infinite 0.5s; /* Startar efter introt */
+    ${floatCard} 5s ease-in-out infinite 0.5s;
 
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   &:hover {
-    transform: translateY(-8px) scale(1.02); /* Lyfter högre och blir lite större */
-    box-shadow: 0 20px 35px rgba(168, 85, 247, 0.25); /* Glöder i lila vid hover! */
-    border-left-color: #f43f5e; /* Kanten skiftar färg till rosa vid hover */
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 35px rgba(168, 85, 247, 0.25);
+    border-left-color: #f43f5e;
   }
 `;
 
@@ -99,11 +97,11 @@ const ActionButton = styled.button`
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.25);
 
   &:hover {
-    transform: translateY(-3px) scale(1.05); /* Knapparna poppar ut mer */
+    transform: translateY(-3px) scale(1.05);
   }
 
   &:active {
-    transform: translateY(0) scale(0.95); /* Knappen trycks in fysiskt */
+    transform: translateY(0) scale(0.95);
   }
 `;
 

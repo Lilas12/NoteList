@@ -10,13 +10,12 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     width: 100%;
     min-height: 100vh;
-    background-color: #060814; /* Supermörk, lyxig midnattsblå bas */
+    background-color: #060814;
     overflow-x: hidden;
   }
 `;
 
-// --- ANIMATIONS ---
-// Denna animation flyttar långsamt runt färgfälten så att de flyter ihop magiskt
+
 const meshMove = keyframes`
   0% { transform: translate(0px, 0px) scale(1); }
   33% { transform: translate(30px, -50px) scale(1.15); }
@@ -30,7 +29,7 @@ const meshMoveReverse = keyframes`
   100% { transform: translate(0px, 0px) scale(1); }
 `;
 
-// --- STYLED COMPONENTS ---
+//STYLED COMPONENTS
 const PageWrapper = styled.div`
   width: 100%;
   min-height: 100vh;
@@ -41,7 +40,6 @@ const PageWrapper = styled.div`
   overflow: hidden;
 `;
 
-/* REN OCH EXKLUSIV MESH-BAKGRUND */
 const BackgroundContainer = styled.div`
   position: fixed;
   top: 0;
@@ -53,19 +51,19 @@ const BackgroundContainer = styled.div`
   background: #060814;
 `;
 
-// Stora, mjuka dämpade färgaffärer (inga stjärnor eller skarpa kanter)
+
 const Blob = styled.div`
   position: absolute;
   border-radius: 50%;
   mix-blend-mode: screen;
-  filter: blur(120px); /* Extremt hög blur för en helt mjuk övergång */
-  opacity: 0.4; /* Snyggt dämpad så det inte blir för ljust */
+  filter: blur(120px);
+  opacity: 0.4;
 `;
 
 const PurpleBlob = styled(Blob)`
   width: 600px;
   height: 600px;
-  background: #6b21a8; /* Djuplila */
+  background: #6b21a8;
   top: -100px;
   left: -50px;
   animation: ${meshMove} 25s ease-in-out infinite;
@@ -74,7 +72,7 @@ const PurpleBlob = styled(Blob)`
 const BlueBlob = styled(Blob)`
   width: 700px;
   height: 700px;
-  background: #1d4ed8; /* Kungsblå */
+  background: #1d4ed8;
   bottom: -150px;
   right: -100px;
   animation: ${meshMoveReverse} 30s ease-in-out infinite;
@@ -83,7 +81,7 @@ const BlueBlob = styled(Blob)`
 const PinkBlob = styled(Blob)`
   width: 500px;
   height: 500px;
-  background: #be185d; /* Mörkt rosa/hallon */
+  background: #be185d;
   top: 30%;
   left: 40%;
   animation: ${meshMove} 20s ease-in-out infinite;
@@ -94,7 +92,7 @@ const Container = styled.div`
   max-width: 580px;
   margin: 0 auto;
   position: relative;
-  z-index: 1; /* Lägger appen framför bakgrunden */
+  z-index: 1;
 `;
 
 const Header = styled.header`
@@ -112,14 +110,14 @@ const Header = styled.header`
   }
 
   span {
-    background: linear-gradient(135deg, #a855f7 0%, #f43f5e 100%);
+    background: linear-gradient(135deg, #e2c6fc 0%, #f43f5e 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   p {
-    color: #a3a9b1;
-    font-size: 20px;
+    color: #d7d8db;
+    font-size: 22px;
     font-weight: 500;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -165,7 +163,7 @@ function App() {
       <GlobalStyle />
 
       <PageWrapper>
-        {/* RÖRLIG MESH-BAKGRUND UTAN STJÄRNOR */}
+
         <BackgroundContainer>
           <PurpleBlob />
           <BlueBlob />
