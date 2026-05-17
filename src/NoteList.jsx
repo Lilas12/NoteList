@@ -1,15 +1,25 @@
 import styled, { keyframes } from 'styled-components';
 
-
+// --- ANIMATIONS ---
+// 1. Elastisk intro-animation (Kortet flyger upp och studsar till)
 const popIn = keyframes`
   0% {
     opacity: 0;
-    transform: scale(0.95) translateY(10px);
+    transform: translateY(40px) scale(0.9) rotate(-1deg);
+  }
+  70% {
+    transform: translateY(-4px) scale(1.02) rotate(0.5deg);
   }
   100% {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: translateY(0) scale(1) rotate(0deg);
   }
+`;
+
+// 2. En supermjuk, evig flyteffekt som matchar din rörliga mesh-bakgrund
+const floatCard = keyframes`
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
 `;
 
 // --- STYLED COMPONENTS ---
@@ -28,25 +38,29 @@ const ListTitle = styled.h3`
 `;
 
 const NoteCard = styled.div`
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.9); /* Gjorde kortet aningen vitare för grym kontrast */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 18px;
-  border-left: 5px solid #f39c12;
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-left: 6px solid #a855f7; /* Ändrade till lila för att matcha din MyNote-logga! */
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  /* Kopplar på introststudsen OCH det eviga flytet i en och samma rad */
+  animation:
+    ${popIn} 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+    ${floatCard} 5s ease-in-out infinite 0.5s; /* Startar efter introt */
 
-  animation: ${popIn} 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px) scale(1.02); /* Lyfter högre och blir lite större */
+    box-shadow: 0 20px 35px rgba(168, 85, 247, 0.25); /* Glöder i lila vid hover! */
+    border-left-color: #f43f5e; /* Kanten skiftar färg till rosa vid hover */
   }
 `;
 
@@ -57,8 +71,8 @@ const TextContent = styled.div`
 
 const NoteTitle = styled.h4`
   margin: 0 0 6px 0;
-  color: #1e293b;
-  font-size: 16px;
+  color: #0f172a;
+  font-size: 17px;
   font-weight: 700;
 `;
 
@@ -77,41 +91,46 @@ const ButtonContainer = styled.div`
 
 const ActionButton = styled.button`
   border: none;
-  padding: 7px 14px;
+  padding: 8px 16px;
   border-radius: 8px;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.25);
 
   &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transform: translateY(-3px) scale(1.05); /* Knapparna poppar ut mer */
   }
 
   &:active {
-    transform: translateY(0);
+    transform: translateY(0) scale(0.95); /* Knappen trycks in fysiskt */
   }
 `;
 
 const EditButton = styled(ActionButton)`
   background: #fef3c7;
   color: #d97706;
-  &:hover { background: #fde68a; }
+  &:hover {
+    background: #fde68a;
+    box-shadow: 0 4px 10px rgba(217, 119, 6, 0.2);
+  }
 `;
 
 const DeleteButton = styled(ActionButton)`
   background: #fee2e2;
   color: #dc2626;
-  &:hover { background: #fecaca; }
+  &:hover {
+    background: #fecaca;
+    box-shadow: 0 4px 10px rgba(220, 38, 38, 0.2);
+  }
 `;
 
 const EmptyState = styled.p`
-  color: #f5efe6;
+  color: #a3a9b1;
   font-style: italic;
   text-align: center;
-  padding: 20px;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  padding: 30px;
+  font-size: 16px;
 `;
 
 // --- COMPONENT ---
@@ -120,7 +139,7 @@ function NoteList({ notes, onDeleteNote, onEditNote }) {
     <ListWrapper>
       <ListTitle>My Notes</ListTitle>
       {notes.length === 0 ? (
-        <EmptyState>No notes saved yet.</EmptyState>
+        <EmptyState>No notes saved yet. Add one above! ✨</EmptyState>
       ) : (
         notes.map(note => (
           <NoteCard key={note.id}>
