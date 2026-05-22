@@ -30,7 +30,7 @@ const meshMoveReverse = keyframes`
 `;
 
 //STYLED COMPONENTS
-const PageWrapper = styled.div`
+const WrapperPage = styled.div`
   width: 100%;
   min-height: 100vh;
   position: relative;
@@ -40,7 +40,7 @@ const PageWrapper = styled.div`
   overflow: hidden;
 `;
 
-const BackgroundContainer = styled.div`
+const ContainerBackground = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -109,11 +109,12 @@ const Header = styled.header`
     line-height: 1.1;
   }
 
-  span {
-    background: linear-gradient(135deg, #e2c6fc 0%, #f43f5e 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+span {
+  background: linear-gradient(135deg, #e2c6fc, #f43f5e);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
 
   p {
     color: #d7d8db;
@@ -162,13 +163,13 @@ function App() {
     <>
       <GlobalStyle />
 
-      <PageWrapper>
+      <WrapperPage>
 
-        <BackgroundContainer>
+        <ContainerBackground>
           <PurpleBlob />
           <BlueBlob />
           <PinkBlob />
-        </BackgroundContainer>
+        </ContainerBackground>
 
         <Container>
           <Header>
@@ -190,7 +191,7 @@ function App() {
             onEditNote={setEditingNote}
           />
         </Container>
-      </PageWrapper>
+      </WrapperPage>
     </>
   );
 }

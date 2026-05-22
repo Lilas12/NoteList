@@ -59,7 +59,7 @@ const FormContainer = styled.form`
   }
 `;
 
-const FormTitle = styled.h3`
+const TitleForm = styled.h3`
   margin: 0 0 5px 0;
   color: #0f172a;
   font-size: 20px;
@@ -67,7 +67,7 @@ const FormTitle = styled.h3`
   letter-spacing: -0.5px;
 `;
 
-const Input = styled.input`
+const InputForm = styled.input`
   padding: 14px;
   border: 2px solid #eef2f5;
   border-radius: 8px;
@@ -134,18 +134,27 @@ const BaseButton = styled.button`
 
 const SubmitButton = styled(BaseButton)`
   flex: 2;
-  background: ${props => props.isEditing
-    ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
-    : 'linear-gradient(135deg, #a855f7 0%, #f43f5e 100%)'};
   color: white;
+
+
+  background: linear-gradient(135deg, #a855f7, #f43f5e);
   box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2);
 
   &:hover {
     filter: brightness(1.1);
     box-shadow: 0 10px 25px rgba(244, 63, 94, 0.4);
   }
-`;
 
+
+  &.editing {
+    background: linear-gradient(135deg, #10b981, #059669);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+
+    &:hover {
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+    }
+  }
+`;
 const CancelButton = styled(BaseButton)`
   flex: 1;
   background-color: #f1f2f6;
@@ -184,8 +193,8 @@ function NoteForm({ onAddNote, editingNote, onUpdateNote, onCancelEdit }) {
 
   return (
     <FormContainer onSubmit={handleSubmit} $hasError={error}>
-      <FormTitle>{editingNote ? 'Edit Note' : 'Add New Note'}</FormTitle>
-      <Input
+      <TitleForm>{editingNote ? 'Edit Note' : 'Add New Note'}</TitleForm>
+      <InputForm
         placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
@@ -196,9 +205,9 @@ function NoteForm({ onAddNote, editingNote, onUpdateNote, onCancelEdit }) {
         onChange={(e) => setDescription(e.target.value)}
       />
       <ButtonGroup>
-        <SubmitButton type="submit" isEditing={!!editingNote}>
-          {editingNote ? 'Save Changes' : 'Add Note'}
-        </SubmitButton>
+       <SubmitButton type="submit" className={editingNote ? 'editing' : ''}>
+  {editingNote ? 'Save Changes' : 'Add Note'}
+</SubmitButton>
         {editingNote && (
           <CancelButton type="button" onClick={onCancelEdit}>Cancel</CancelButton>
         )}
