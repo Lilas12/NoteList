@@ -118,13 +118,25 @@ Error generating stack: `+e.message+`
   }
 `,cr=j(sr)`
   flex: 2;
-  background: ${e=>e.isEditing?`linear-gradient(135deg, #10b981 0%, #059669 100%)`:`linear-gradient(135deg, #a855f7 0%, #f43f5e 100%)`};
   color: white;
+
+
+  background: linear-gradient(135deg, #a855f7, #f43f5e);
   box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2);
 
   &:hover {
     filter: brightness(1.1);
     box-shadow: 0 10px 25px rgba(244, 63, 94, 0.4);
+  }
+
+
+  &.editing {
+    background: linear-gradient(135deg, #10b981, #059669);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+
+    &:hover {
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+    }
   }
 `,lr=j(sr)`
   flex: 1;
@@ -135,7 +147,7 @@ Error generating stack: `+e.message+`
     background-color: #dfe4ea;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
   }
-`;function ur({onAddNote:e,editingNote:t,onUpdateNote:n,onCancelEdit:r}){let[i,a]=(0,_.useState)(t?t.title:``),[o,s]=(0,_.useState)(t?t.description:``),[c,l]=(0,_.useState)(!1);return(0,M.jsxs)(nr,{onSubmit:r=>{if(r.preventDefault(),!i.trim()||!o.trim()){l(!0),setTimeout(()=>l(!1),400);return}t?n(t.id,i,o):e(i,o),a(``),s(``)},$hasError:c,children:[(0,M.jsx)(rr,{children:t?`Edit Note`:`Add New Note`}),(0,M.jsx)(ir,{placeholder:`Title`,value:i,onChange:e=>a(e.target.value)}),(0,M.jsx)(ar,{placeholder:`Description...`,value:o,onChange:e=>s(e.target.value)}),(0,M.jsxs)(or,{children:[(0,M.jsx)(cr,{type:`submit`,isEditing:!!t,children:t?`Save Changes`:`Add Note`}),t&&(0,M.jsx)(lr,{type:`button`,onClick:r,children:`Cancel`})]})]})}var dr=Xn`
+`;function ur({onAddNote:e,editingNote:t,onUpdateNote:n,onCancelEdit:r}){let[i,a]=(0,_.useState)(t?t.title:``),[o,s]=(0,_.useState)(t?t.description:``),[c,l]=(0,_.useState)(!1);return(0,M.jsxs)(nr,{onSubmit:r=>{if(r.preventDefault(),!i.trim()||!o.trim()){l(!0),setTimeout(()=>l(!1),400);return}t?n(t.id,i,o):e(i,o),a(``),s(``)},$hasError:c,children:[(0,M.jsx)(rr,{children:t?`Edit Note`:`Add New Note`}),(0,M.jsx)(ir,{placeholder:`Title`,value:i,onChange:e=>a(e.target.value)}),(0,M.jsx)(ar,{placeholder:`Description...`,value:o,onChange:e=>s(e.target.value)}),(0,M.jsxs)(or,{children:[(0,M.jsx)(cr,{type:`submit`,className:t?`editing`:``,children:t?`Save Changes`:`Add Note`}),t&&(0,M.jsx)(lr,{type:`button`,onClick:r,children:`Cancel`})]})]})}var dr=Xn`
   0% {
     opacity: 0;
     transform: translateY(40px) scale(0.9) rotate(-1deg);
@@ -320,11 +332,12 @@ Error generating stack: `+e.message+`
     line-height: 1.1;
   }
 
-  span {
-    background: linear-gradient(135deg, #e2c6fc 0%, #f43f5e 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+span {
+  background: linear-gradient(135deg, #e2c6fc, #f43f5e);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
 
   p {
     color: #d7d8db;
